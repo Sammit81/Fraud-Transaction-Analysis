@@ -101,9 +101,18 @@ The database is written to `data/duckdb/fraud.duckdb`. Connect Tableau to it via
 
 ---
 
+## Documentation
+
+- [`docs/data_dictionary.md`](docs/data_dictionary.md) — all tables, columns, types, and null rates
+- [`docs/decisions.md`](docs/decisions.md) — design rationale: why DuckDB, how scoring thresholds were chosen, agent accuracy findings
+
+---
+
 ## Dashboard
 
 Built in Tableau Desktop. Four pages, all reading from `data/duckdb/fraud.duckdb`.
+
+> **Note on the Tableau workbook**: `Fraud Visualisation/Fraud Transaction Dashboard.twb` connects to the local DuckDB file via JDBC. To open it, run the pipeline first (`load_data.py` → `run_sql.py`) so the database exists at `data/duckdb/fraud.duckdb`, then point the workbook at that path in Tableau's data source editor. The `.twb` file is XML — the data is not embedded.
 
 ### Executive Overview
 20,663 fraud cases across 590,540 transactions ($3,083,845 total). Key breakdowns: fraud peaks between hours 5–10 (morning spike, not overnight as the scoring rule assumes — a refinement opportunity), product category C has the highest fraud rate at ~12%, and Discover cards are disproportionately represented at ~7%.
