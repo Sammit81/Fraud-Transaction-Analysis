@@ -91,10 +91,10 @@ uv run python/load_data.py
 uv run python/run_sql.py
 
 # 5. Smoke-test the agent on a single transaction
-uv run python/agents/investigate.py
+uv run python -m python.agent.investigate
 
 # 6. Run batch investigation on the top 20 transactions by risk score
-uv run python/agent/batch_investigate.py --limit 20
+uv run python -m python.agent.batch_investigate --limit 20
 ```
 
 The database is written to `data/duckdb/fraud.duckdb`. Connect Tableau to it via the DuckDB JDBC driver, or export to Parquet for Tableau Cloud.
